@@ -23,7 +23,7 @@ class App(QWidget):
 
         self.age=QLineEdit("30"); self.bmi=QLineEdit("26"); self.parity=QLineEdit("1")
         self.eth=QComboBox(); self.eth.addItems(["Asian","White","Black","Hispanic","Other"])
-        self.prior=QCheckBox("prior_gdm"); self.family=QCheckBox("family_dm"); self.family.setChecked(True)
+        self.prior=QCheckBox("prior_gdm"); self.prior.setChecked(True); self.family=QCheckBox("family_dm"); self.family.setChecked(True)
 
         b_vis=QPushButton("1) Visualize HUD"); b_vis.clicked.connect(self.do_vis)
         b_ext=QPushButton("2) Extract Features"); b_ext.clicked.connect(self.do_ext)
