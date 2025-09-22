@@ -8,21 +8,17 @@
     "family_dm": 1
   },
   "rec": {
-    "risk_prob": 0.084,
-    "risk_tier": "LOW",
+    "risk_prob": 0.113,
+    "risk_tier": "HIGH",
     "features": {
       "perclos": 0.08353808353808354,
       "blink_rate": 25.140559623120737,
       "neck_norm": 1.4
     },
     "next_steps": [
-      "Lifestyle packet",
+      "Early OGTT 16\u201320w",
+      "Nutrition consult in 7d",
       "Auto-enroll postpartum 6\u201312w glucose test"
     ]
-  },
-  "meta": {
-    "influencer": "Yes",
-    "note": "YouTube GDM sample; ethnicity=Asian",
-    "ts": 1758525939
   }
 }
