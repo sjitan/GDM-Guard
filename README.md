@@ -28,9 +28,6 @@ source .venv/bin/activate
 python -m pip install --upgrade pip -r requirements.txt
 
 ## Seed demo (local file, gitignored)
-mkdir -p seeds sessions
-ffmpeg -y -i ~/Desktop/GDM_Sample_Video.mov -an -vf "scale=960:-2,fps=30" -c:v libx264 -preset veryfast -crf 23 seeds/gdm_test.mp4
-
 python extract_selfie_features.py --video seeds/gdm_test.mp4 --duration 20 --out sessions/test_features.json
 python agent_cli.py --video seeds/gdm_test.mp4 --age 30 --bmi 26 --parity 1 --ethnicity Asian --prior_gdm 0 --family_dm 1
 
