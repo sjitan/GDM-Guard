@@ -2,6 +2,18 @@
 
 AI-enabled early-pregnancy **GDM risk triage** + postpartum follow-through (Boston pilot demo).
 
+## Quick Qt visual demo (copy–paste)
+python qt_visual_demo.py --video seeds/gdm_sample.mp4 --mirror 1 --hud_scale 1.3
+
+## 60s CLI demo
+python visualize_selfie.py --video seeds/gdm_sample.mp4 --duration 12 --mirror 1 --out_json sessions/vis_metrics.json
+python extract_selfie_features.py --video seeds/gdm_sample.mp4 --duration 12 --out sessions/seed_features.json
+python agent_cli.py --video seeds/gdm_sample.mp4 --age 30 --bmi 26 --parity 1 --ethnicity Asian --prior_gdm 1 --family_dm 1
+
+# GDMGuard
+
+AI-enabled early-pregnancy **GDM risk triage** + postpartum follow-through (Boston pilot demo).
+
 ## Quick demo (copy & paste)
 **Python 3.11 required.** Works on macOS, Linux, Windows.
 
