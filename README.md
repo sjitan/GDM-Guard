@@ -48,3 +48,9 @@ OpenCV • MediaPipe Face Mesh • NumPy • Pandas • Matplotlib • PySide6 (
 4. ADA. Standards of Care in Diabetes—2024: Pregnancy.
 5. Tovar A, et al. Postpartum screening after GDM—systematic review. Matern Child Health J. 2011.
 6. Martínez-Portilla RJ, et al. First-trimester GDM prediction with easy-to-obtain variables (MIDO-GDM). Sci Rep. 2024.
+
+## Selfie vitals (what you’ll see)
+- **rPPG** (face-based HR & stability proxy) in the Qt HUD and selfie extractor
+- **Fatigue cues**: PERCLOS, blinks/min
+- **Neck proxy**: neck_norm metric (edema/neck circumference proxy)
+
