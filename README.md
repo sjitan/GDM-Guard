@@ -3,7 +3,7 @@
 AI-enabled early-pregnancy **GDM risk triage** + postpartum follow-through (Boston pilot demo).
 
 ## What’s in this repo
-- `generate_dataset.py` → synthetic cohort across **T1, T2, T4** with labels: `GDM_dx`, `pp_glucose_test_done_T4`, `incident_T2D_12m`, `weight_retention_12m`.
+- `generate_dataset.py` → synthetic cohort across **T1, T2, T3, T4** with labels: `GDM_dx`, `pp_glucose_test_done_T4`, `incident_T2D_12m`, `weight_retention_12m`.
 - `extract_selfie_features.py` → face-video features: rPPG HR, rPPG stability, sleepiness cues (PERCLOS, blinks), neck circumference proxy.
 - `agent_cli.py` → merges selfie features + minimal intake (age, BMI, parity, prior GDM, family history, ethnicity) → **risk tier** + **next-steps** text; logs CSV in `sessions/`.
 
@@ -22,6 +22,10 @@ python extract_selfie_features.py --video seeds/gdm_test.mp4 --duration 20 --out
 # Run the agent on the same clip (edit demographics as needed)
 python agent_cli.py --video seeds/gdm_test.mp4 --age 30 --bmi 26 --parity 1 --ethnicity Asian --prior_gdm 0 --family_dm 1
 
+# Run minimal selfie analyzer demo
+python analyze_selfie.py --video seeds/gdm_test.mp4 --out sessions/last_features.json
+
+
 # Inspect last session log
 python - <<'PY'
 import glob,pandas as pd
@@ -30,11 +34,15 @@ print(p); print(pd.read_csv(p).head())
 PY
 
 ## Modeling ladder (next step)
-- **M0**: Core clinical (age, BMI, parity, prior GDM, family DM, ethnicity). (MIDO-style baseline)
-- **M1**: + GWG features (`gwg_slope_kg_per_wk`, `gwg_dev_from_IOM`).
-- **M2**: + selfie-derived vitals (rPPG HR/stability, PERCLOS/blinks, neck-proxy, sleep hours/quality).
-- **M3**: + optional PRS bin (`PRS_0to10`, `PRS_missing`).
-- Postpartum modules: predict `pp_glucose_test_done_T4` and `incident_T2D_12m` from risk tier + adherence/access proxies.
+- **M0:** Core clinical (age, BMI, parity, prior GDM, family DM, ethnicity).
+- **M1:** + **GWG features** (gwg_slope_kg_per_wk, gwg_dev_from_IOM).
+- **M2:** + **Selfie-derived vitals** (rPPG HR/stability, PERCLOS/blinks, neck-proxy, sleep hours/quality).
+- **M3:** + **PRS** (optional, PRS_0to10, PRS_missing).
+- **Outputs:**
+  - Risk tier (low/med/high + confidence)
+  - “Next-step” engine (nutrition, CGM, closer follow-up)
+  - Postpartum module: `pp_glucose_test_done_T4` prediction
+  - Long-term module: `incident_T2D_12m` risk
 
 ## Why this matters (data points)
 - U.S. births 2023: **3,596,017**. GDM prevalence ≈ **8.3%** → ~**300k** cases/yr.  
@@ -59,3 +67,9 @@ PY
 - Videos remain local in `seeds/` and are **gitignored** by design.
 - This is a demo with **synthetic data**; no PHI; runs on macOS Apple Silicon Python 3.11.
 
+
+## Stages captured
+- T1: 6–13 wks
+- T2: 18–26 wks
+- T3: 28–32 wks
+- T4: ~12 wks postpartum
