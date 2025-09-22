@@ -1,4 +1,4 @@
-import argparse,cv2,mediapipe as mp,time,collections,numpy as np,json,os,math
+import argparse,cv2,mediapipe as mp,time,collections,numpy as np,json,os,math,math
 ap=argparse.ArgumentParser()
 ap.add_argument("--video",required=True)
 ap.add_argument("--out_json",default="sessions/last_features.json")
@@ -24,9 +24,16 @@ while True:
     r=fm.process(rgb)
     h,w=fr.shape[:2]
     neck_norm=0.0
+    neck_norm=0.0
     if r.multi_face_landmarks:
         lms=r.multi_face_landmarks[0]
         du.draw_landmarks(fr,lms,mp.solutions.face_mesh.FACEMESH_TESSELATION,ds.get_default_face_mesh_tesselation_style(),ds.get_default_face_mesh_tesselation_style())
+        land=lms.landmark
+        def P(i):
+            p=land[i]; return np.array([p.x*w,p.y*h])
+        jawL,jawR=P(234),P(454); eyeL,eyeR=P(33),P(263)
+        jaw_w=np.linalg.norm(jawR-jawL); eye_w=np.linalg.norm(eyeR-eyeL)+1e-6
+        neck_norm=float(np.clip(jaw_w/eye_w,0.8,1.4))
         land=lms.landmark
         def P(i):
             p=land[i]; return np.array([p.x*w,p.y*h])
@@ -43,12 +50,6 @@ while True:
         prev_open=now_open
     perclos=float(np.mean(buf)) if len(buf)>0 else 0.0
     fps_text=f"PERCLOS {perclos:.2f}  Blinks {blinks}"
-    cv2.rectangle(fr,(10,10),(10+720,70),(255,255,255),-1)
-    cv2.putText(fr,fps_text+f"  Neck {neck_norm:.2f}",(18,50),cv2.FONT_HERSHEY_SIMPLEX,0.9,(0,0,0),2)
-    cv2.imshow("GDMGuard Face Visualizer",fr)
-    if cv2.waitKey(1)&0xFF==ord('q'): break
-    if args.duration>0 and (time.time()-t0)>=args.duration: break
-cap.release(); cv2.destroyAllWindows()
-out={"perclos":float(np.mean(buf)) if len(buf)>0 else 0.0,"blink_rate":blinks/max(1e-3,(time.time()-t0))*60.0,"neck_norm":neck_norm}
+    cv2.rectangle(fr,(10,10),(10+800,110),(255,255,255),-1) if len(buf)>0 else 0.0,"blink_rate":blinks/max(1e-3,(time.time()-t0))*60.0,"neck_norm":neck_norm}
 with open(args.out_json,"w") as f: json.dump(out,f)
 print(args.out_json)
