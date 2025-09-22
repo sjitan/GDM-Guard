@@ -4,11 +4,11 @@
     "bmi": 26.0,
     "parity": 1,
     "ethnicity": "Asian",
-    "prior_gdm": 0,
+    "prior_gdm": 1,
     "family_dm": 1
   },
   "rec": {
-    "risk_prob": 0.113,
+    "risk_prob": 0.221,
     "risk_tier": "HIGH",
     "features": {
       "perclos": 0.08353808353808354,
