@@ -13,3 +13,5 @@ models/*.pkl
 models/*.h5
 .venv/
 !gdm_sample.mp4
+
+sessions/*.json
