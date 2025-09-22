@@ -27,7 +27,8 @@ def run(video,camera,duration,out_json):
     t0=time.time(); last=time.time(); blinks=0; was_open=True; perclos_buf=collections.deque(maxlen=300); neck_last=1.0
     while True:
         ok,fr=cap.read()
-        if not ok: break
+    if not ok: break
+    if a.mirror: fr=cv2.flip(fr,1)
         rgb=cv2.cvtColor(fr,cv2.COLOR_BGR2RGB)
         r=fm.process(rgb)
         h,w=fr.shape[:2]
@@ -59,7 +60,8 @@ if __name__=="__main__":
     ap=argparse.ArgumentParser()
     ap.add_argument("--video",default="")
     ap.add_argument("--camera",type=int,default=0)
-    ap.add_argument("--duration",type=int,default=20)
+    ap.add_argument('--duration',type=int,default=20)
+ap.add_argument('--mirror',type=int,default=1)
     ap.add_argument("--out_json",default="sessions/vis_metrics.json")
     a=ap.parse_args()
     run(a.video if a.video else "",a.camera,a.duration,a.out_json)

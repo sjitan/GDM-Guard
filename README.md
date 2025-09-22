@@ -23,11 +23,24 @@ AI-enabled early pregnancy **GDM risk triage** + postpartum follow-through (Bost
 - `data/` (generated), `reports/` (plots), `seeds/` (local demo clips), `sessions/` (logs)
 
 ## Quickstart
+
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip -r requirements.txt
 
+<<<<<<< Updated upstream
 ## Seed demo (local file, gitignored)
+=======
+## Demo (with included seed)
+python extract_selfie_features.py --video seeds/gdm_seed.mp4 --duration 20 --out sessions/seed_features.json --mirror 1
+python agent_cli.py --video seeds/gdm_seed.mp4 --age 30 --bmi 26 --parity 1 --ethnicity Asian --prior_gdm 0 --family_dm 1
+python visualize_selfie.py --video seeds/gdm_seed.mp4 --duration 20 --out_json sessions/vis_metrics.json --mirror 1
+
+##  Seed demo (local file, gitignored)
+mkdir -p seeds sessions
+ffmpeg -y -i ~/Desktop/GDM_Sample_Video.mov -an -vf "scale=960:-2,fps=30" -c:v libx264 -preset veryfast -crf 23 seeds/gdm_test.mp4
+
+>>>>>>> Stashed changes
 python extract_selfie_features.py --video seeds/gdm_test.mp4 --duration 20 --out sessions/test_features.json
 python agent_cli.py --video seeds/gdm_test.mp4 --age 30 --bmi 26 --parity 1 --ethnicity Asian --prior_gdm 0 --family_dm 1
 
