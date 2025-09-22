@@ -8,16 +8,21 @@
     "family_dm": 1
   },
   "rec": {
-    "risk_prob": 0.111,
+    "risk_prob": 0.084,
     "risk_tier": "LOW",
     "features": {
-      "perclos": 1.0,
-      "blink_rate": 0.0,
-      "neck_norm": 1.0
+      "perclos": 0.08353808353808354,
+      "blink_rate": 25.140559623120737,
+      "neck_norm": 1.4
     },
     "next_steps": [
       "Lifestyle packet",
       "Auto-enroll postpartum 6\u201312w glucose test"
     ]
+  },
+  "meta": {
+    "influencer": "Yes",
+    "note": "YouTube GDM sample; ethnicity=Asian",
+    "ts": 1758525939
   }
 }
