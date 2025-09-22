@@ -2,6 +2,12 @@
 
 AI-enabled early-pregnancy **GDM risk triage** + postpartum follow-through (Boston pilot demo).
 
+## Run the Qt demo in 1 click
+
+python minimal_qt.py
+
+If the window is blank, select **seeds/gdm_sample.mp4**, verify **prior_gdm** is checked, then **Run Demo**.
+
 ## Run the 60-second demo
 python visualize_selfie.py --video seeds/gdm_sample.mp4 --duration 10 --mirror 1 --out_json sessions/vis_metrics.json
 python extract_selfie_features.py --video seeds/gdm_sample.mp4 --duration 10 --out sessions/seed_features.json
