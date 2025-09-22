@@ -8,28 +8,28 @@ python extract_selfie_features.py --video seeds/gdm_sample.mp4 --duration 10 --o
 python agent_cli.py --video seeds/gdm_sample.mp4 --age 30 --bmi 26 --parity 1 --ethnicity Asian --prior_gdm 0 --family_dm 1
 
 Outputs:
-- `sessions/vis_metrics.json` (PERCLOS, blink rate, neck_norm)
-- `sessions/session_*.csv` (agent log)
-- `reports/snapshot_metrics.png` (prevalence + T4 completion snapshot)
+- sessions/vis_metrics.json
+- sessions/session_*.csv
+- reports/snapshot_metrics.png
 
 ## What’s in this repo
-- `generate_dataset.py` → synthetic cohort across **T1, T2, T3, T4** with labels: `GDM_dx`, `pp_glucose_test_done_T4`, `incident_T2D_12m`, `weight_retention_12m`
-- `extract_selfie_features.py` → face-video features (rPPG HR/stability proxy, sleepiness cues PERCLOS/blinks, neck circumference proxy)
-- `visualize_selfie.py` → live overlay HUD for the selfie metrics
-- `agent_cli.py` → merges selfie features + minimal intake → risk tier + next-steps text; logs to `sessions/`
+- generate_dataset.py → synthetic cohort across T1, T2, T3, T4 with labels: GDM_dx, pp_glucose_test_done_T4, incident_T2D_12m, weight_retention_12m
+- extract_selfie_features.py → face-video features (rPPG HR/stability proxy, PERCLOS/blinks, neck circumference proxy)
+- visualize_selfie.py → live overlay HUD for selfie metrics
+- agent_cli.py → merges selfie features + minimal intake → risk tier + next-steps text; logs to sessions/
 
 ## Model ladder (triage stack)
-- **M0:** Core clinical (age, BMI, parity, prior GDM, family DM, ethnicity)
-- **M1:** + **GWG** features (gwg_slope_kg_per_wk, gwg_dev_from_IOM) aggregated across **T1–T3**
-- **M2:** + **Selfie vitals** (rPPG HR/stability proxy, PERCLOS/blinks, neck_norm, sleep hours/quality if present)
-- **M3:** + **PRS** bin (optional: `PRS_0to10`, `PRS_missing`)
-- Downstream: predict `pp_glucose_test_done_T4` and `incident_T2D_12m` from risk tier + adherence/access proxies
+- M0: Core clinical (age, BMI, parity, prior GDM, family DM, ethnicity)
+- M1: + GWG features (gwg_slope_kg_per_wk, gwg_dev_from_IOM) aggregated across T1–T3
+- M2: + Selfie vitals (rPPG HR/stability proxy, PERCLOS/blinks, neck_norm, sleep hours/quality if present)
+- M3: + PRS bin (optional: PRS_0to10, PRS_missing)
+- Downstream: predict pp_glucose_test_done_T4 and incident_T2D_12m from risk tier + adherence/access proxies
 
 ## Stages captured
-- **T1:** 6–13 wks
-- **T2:** 18–26 wks
-- **T3:** 28–32 wks
-- **T4:** ~12 wks postpartum
+- T1: 6–13 wks
+- T2: 18–26 wks
+- T3: 28–32 wks
+- T4: ~12 wks postpartum
 
 ## One-liner to plot a snapshot
 python - <<'PY'
@@ -57,19 +57,11 @@ PY
 - Python 3.11; optional FFmpeg for .mov→.mp4
 
 ## References (selected)
-[1] National Center for Health Statistics (NCHS). Births: Provisional Data for 2023. CDC/NCHS, 2024. Available at: https://www.cdc.gov/nchs/pressroom/states/massachusetts/massachusetts.htm
-
-[2] Deputy NP, et al. Prevalence and trends in gestational diabetes in the United States, 2016–2021. CDC maternal health data portal. Available at: https://www.cdc.gov/reproductivehealth/maternalinfanthealth/pregnancy-complications-data.htm
-
-[3] American College of Obstetricians and Gynecologists (ACOG). Gestational Diabetes Mellitus—Patient FAQ / Practice Guidance (screening 24–28 weeks; earlier if high-risk). Available at: https://www.acog.org/womens-health/faqs/gestational-diabetes
-
-[4] American Diabetes Association. Standards of Care in Diabetes—2024: Diabetes and Pregnancy. Diabetes Care. Available at: https://diabetesjournals.org/care
-
-[5] Tovar A, et al. Postpartum screening among women with a history of gestational diabetes mellitus—A systematic review. Matern Child Health J. 2011. Available at: https://pmc.ncbi.nlm.nih.gov/3110507/
-
-[6] Martínez-Portilla RJ, et al. First-trimester prediction of gestational diabetes using easy-to-obtain variables (MIDO-GDM). Sci Rep (Nature Portfolio). 2024. Available at: https://www.nature.com/articles/s41598-024-82757-2
-
-[7] Borodulin K, et al. Exercise during pregnancy and risk of gestational diabetes: meta-analysis. (Representative recent meta-analysis). Available at: https://www.nature.com/ (insert exact DOI)
-
-[8] Boston Public Health Commission. Boston Resident Births 2021—Summary statistics. Available at: https://www.bphc.org/healthdata
-MD
+[1] National Center for Health Statistics (NCHS). Births: Provisional Data for 2023. https://www.cdc.gov/nchs/pressroom/states/massachusetts/massachusetts.htm
+[2] CDC maternal health data portal (GDM prevalence 2016–2021). https://www.cdc.gov/reproductivehealth/maternalinfanthealth/pregnancy-complications-data.htm
+[3] ACOG. Gestational Diabetes—screening 24–28 wks; earlier if high-risk. https://www.acog.org/womens-health/faqs/gestational-diabetes
+[4] ADA. Standards of Care in Diabetes—2024: Pregnancy. https://diabetesjournals.org/care
+[5] Tovar A, et al. Postpartum screening after GDM—systematic review. https://pmc.ncbi.nlm.nih.gov/3110507/
+[6] Martínez-Portilla RJ, et al. First-trimester MIDO-GDM model. https://www.nature.com/articles/s41598-024-82757-2
+[7] Exercise during pregnancy lowers GDM risk (representative meta-analysis). https://www.nature.com/
+[8] Boston Resident Births 2021—summary stats. https://www.bphc.org/healthdata
