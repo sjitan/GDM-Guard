@@ -1,0 +1,8 @@
+Repo: GDMGuard
+Date: 20250922_141421
+Branch: main
+Commit: 01ef259
+Quick run (Qt):
+  source .venv/bin/activate && PYTHONPATH=. python apps/qt_app.py --video seeds/gdm_sample.mp4 --mirror 1
+Quick run (CLI):
+  source .venv/bin/activate && python apps/cli_visualize.py --video seeds/gdm_sample.mp4 --duration 10 --mirror 1 --out_json sessions/vis_metrics.json && python apps/extract_selfie_features.py --video seeds/gdm_sample.mp4 --duration 10 --out sessions/seed_features.json && python apps/agent_cli.py --video seeds/gdm_sample.mp4 --age 30 --bmi 26 --parity 1 --ethnicity Asian --prior_gdm 1 --family_dm 1

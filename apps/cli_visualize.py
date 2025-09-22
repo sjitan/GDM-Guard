@@ -73,5 +73,13 @@ out.setdefault('rPPG_stability', float('nan'))
 out.setdefault('perclos', out.get('perclos', float('nan')))
 out.setdefault('blink_rate', out.get('blink_rate', float('nan')))
 out.setdefault('neck_norm', out.get('neck_norm', float('nan')))
-json.dump(out,f)
+with open(out_path,'w') as f:
+        import json
+        import json
+with open(out_path,'w') as f:
+    import json
+with open(out_path,'w') as f:
+    import json
+with open(out_path,'w') as f:
+    json.dump(out,f)
 print(out)
