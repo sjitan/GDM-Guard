@@ -1,5 +1,14 @@
 # GDMGuard
 
+## Judge Quick Test
+
+1) python3 -m venv .venv && source .venv/bin/activate && python -m pip install --upgrade pip && pip install -r requirements.txt
+2) Put GDM_Sample_Video.mov on Desktop
+3) mkdir -p seeds sessions && ffmpeg -y -i ~/Desktop/GDM_Sample_Video.mov -an -vf "scale=960:-2,fps=30" -c:v libx264 -preset veryfast -crf 23 seeds/gdm_test.mp4
+4) python extract_selfie_features.py --video seeds/gdm_test.mp4 --duration 20 --out sessions/test_features.json
+5) python agent_cli.py --video seeds/gdm_test.mp4 --age 30 --bmi 26 --parity 1 --ethnicity Asian --prior_gdm 0 --family_dm 1
+6) cat sessions/test_features.json && ls -1 sessions/session_*.csv
+
 AI-enabled early pregnancy **GDM risk triage** + postpartum follow-through (Boston pilot demo).  
 This repo includes a **synthetic dataset generator**, quick plots, and a baseline modeling scaffold.
 

@@ -1,0 +1,2 @@
+age,BMI,parity,prior_GDM,family_DM,chronic_HTN,prior_macrosomia,ethnicity,gwg_dev_from_IOM,rPPG_HR,rPPG_stability,sleep_hours_24h,neck_circ_norm,PRS_0to10,PRS_missing,prob,risk_tier,next_steps
+29.0,28.5,0,0,1,0,0,Hispanic,0.0,63.28125,0.11361521763919236,,,,1,0.4655931954918785,High,Early OGTT 16–20w; nutrition consult now; postpartum test auto-enrolled
