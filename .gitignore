@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.build/
+dist/
+.eggs/
+.ipynb_checkpoints/
+
+# venv
+.venv/
+env/
+venv/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Data & artifacts
+data/
+reports/*.png
+reports/*.pdf
+reports/*.html
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
