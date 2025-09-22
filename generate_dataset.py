@@ -22,7 +22,7 @@ def draw_subject(i):
 subs=[draw_subject(i) for i in range(N)]
 rows=[]
 for s in subs:
-    for stage,gw_lo,gw_hi in [("T1",6,13),("T2",18,26)]:
+    for stage,gw_lo,gw_hi in [("T1",6,13),("T2",18,26),("T3",24,28)]:
         gw=clip(rng.uniform(gw_lo,gw_hi),6,40)
         gwg_slope=clip(rng.normal(0.35,0.20),-0.10,1.20)
         iom_target=0.35
@@ -37,8 +37,8 @@ for s in subs:
         blink_rate_min=clip(rng.normal(18+2*(7.0-sleep_hours_24h),5),8,35)
         fasting_glucose=clip(s["base_fglu"]+rng.normal(0,5),70,140)
         A1C=clip(s["base_a1c"]+rng.normal(0,0.15),4.8,6.5)
-        if rng.random()<0.30 and stage=="T1": fasting_glucose=np.nan
-        if rng.random()<0.20 and stage=="T1": A1C=np.nan
+        if rng.random()<0.30 and stage in ["T1","T2"]: fasting_glucose=np.nan
+        if rng.random()<0.20 and stage in ["T1","T2"]: A1C=np.nan
         if rng.random()<0.30: sleep_hours_24h=np.nan
         if rng.random()<0.30: rPPG_HR=np.nan
         if rng.random()<0.30: rPPG_stability=np.nan
@@ -70,8 +70,8 @@ logit+=0.12*((0.5-STAB)/0.25)
 logit+=0.10*((AGE-30)/5.0)
 logit+=ETH_SHIFT
 p_raw=1/(1+np.exp(-logit))
-t12=df.stage_code.isin(["T1","T2"])
-avg=np.nanmean(p_raw[t12])
+mask_early=df.stage_code.isin(["T1","T2","T3"])
+avg=np.nanmean(p_raw[mask_early])
 target=0.10
 calib=np.log(target/(1-target))-np.log(avg/(1-avg)) if np.isfinite(avg) and 0<avg<1 else 0.0
 p=1/(1+np.exp(-(logit+calib)))
@@ -108,9 +108,11 @@ df["fasting_glucose_missing"]=df["fasting_glucose"].isna().astype(int)
 df["A1C_missing"]=df["A1C"].isna().astype(int)
 df["rPPG_missing"]=(df["rPPG_HR"].isna() | df["rPPG_stability"].isna()).astype(int)
 Path("data").mkdir(parents=True,exist_ok=True)
-out="data/GDMGuard_dataset_v2_2.csv"
+out="data/GDMGuard_dataset_v3_T1T2T3T4.csv"
 df.to_csv(out,index=False)
-qc={"rows":int(df.shape[0]),"cols":int(df.shape[1]),"subjects":int(df["subj"].nunique()),"gdm_prev_est":float(df[df.stage_code.isin(["T1","T2"])].groupby("subj")["GDM_dx"].max().mean()),"t4_completion_rate":float(pd.to_numeric(df.loc[df.stage_code=="T4","pp_glucose_test_done_T4"]).mean())}
+qc={ "rows":int(df.shape[0]), "cols":int(df.shape[1]), "subjects":int(df["subj"].nunique()),
+     "gdm_prev_est":float(df[df.stage_code.isin(["T1","T2","T3"])].groupby("subj")["GDM_dx"].max().mean()),
+     "t4_completion_rate":float(pd.to_numeric(df.loc[df.stage_code=="T4","pp_glucose_test_done_T4"]).mean())}
 Path("reports").mkdir(parents=True,exist_ok=True)
 with open("reports/leakage_checks.txt","w") as f: f.write(json.dumps(qc,indent=2))
 print(out,qc)

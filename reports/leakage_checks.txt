@@ -1,7 +1,7 @@
 {
-  "rows": 30000,
+  "rows": 40000,
   "cols": 35,
   "subjects": 10000,
-  "gdm_prev_est": 0.1026,
-  "t4_completion_rate": 0.5901
+  "gdm_prev_est": 0.0906,
+  "t4_completion_rate": 0.5831
 }
