@@ -1,0 +1,23 @@
+{
+  "intake": {
+    "age": 30.0,
+    "bmi": 26.0,
+    "parity": 1,
+    "ethnicity": "Asian",
+    "prior_gdm": 0,
+    "family_dm": 1
+  },
+  "rec": {
+    "risk_prob": 0.111,
+    "risk_tier": "LOW",
+    "features": {
+      "perclos": 1.0,
+      "blink_rate": 0.0,
+      "neck_norm": 1.0
+    },
+    "next_steps": [
+      "Lifestyle packet",
+      "Auto-enroll postpartum 6\u201312w glucose test"
+    ]
+  }
+}

@@ -11,3 +11,4 @@ reports/*.html
 reports/*.pdf
 models/*.pkl
 models/*.h5
+.venv/
