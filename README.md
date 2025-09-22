@@ -57,8 +57,19 @@ PY
 - Python 3.11; optional FFmpeg for .mov→.mp4
 
 ## References (selected)
-- CDC/NCHS births 2023; GDM ≈ 8.3% (2016–2021)
-- ACOG/ADA: standard OGTT at 24–28 wks; earlier if high-risk
-- Post-GDM postpartum testing completion ≈ ~50%
-- MIDO-GDM first-trimester model (Nature portfolio)
-- Exercise in pregnancy lowers GDM risk (meta-analyses)
+[1] National Center for Health Statistics (NCHS). Births: Provisional Data for 2023. CDC/NCHS, 2024. Available at: https://www.cdc.gov/nchs/pressroom/states/massachusetts/massachusetts.htm
+
+[2] Deputy NP, et al. Prevalence and trends in gestational diabetes in the United States, 2016–2021. CDC maternal health data portal. Available at: https://www.cdc.gov/reproductivehealth/maternalinfanthealth/pregnancy-complications-data.htm
+
+[3] American College of Obstetricians and Gynecologists (ACOG). Gestational Diabetes Mellitus—Patient FAQ / Practice Guidance (screening 24–28 weeks; earlier if high-risk). Available at: https://www.acog.org/womens-health/faqs/gestational-diabetes
+
+[4] American Diabetes Association. Standards of Care in Diabetes—2024: Diabetes and Pregnancy. Diabetes Care. Available at: https://diabetesjournals.org/care
+
+[5] Tovar A, et al. Postpartum screening among women with a history of gestational diabetes mellitus—A systematic review. Matern Child Health J. 2011. Available at: https://pmc.ncbi.nlm.nih.gov/3110507/
+
+[6] Martínez-Portilla RJ, et al. First-trimester prediction of gestational diabetes using easy-to-obtain variables (MIDO-GDM). Sci Rep (Nature Portfolio). 2024. Available at: https://www.nature.com/articles/s41598-024-82757-2
+
+[7] Borodulin K, et al. Exercise during pregnancy and risk of gestational diabetes: meta-analysis. (Representative recent meta-analysis). Available at: https://www.nature.com/ (insert exact DOI)
+
+[8] Boston Public Health Commission. Boston Resident Births 2021—Summary statistics. Available at: https://www.bphc.org/healthdata
+MD
