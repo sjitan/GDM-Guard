@@ -2,7 +2,8 @@ import sys, time, cv2, numpy as np, mediapipe as mp
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QWidget
 from PySide6.QtCore import QTimer, Qt
 from PySide6.QtGui import QImage, QPixmap
-from rppg_utils import RPPG, forehead_roi, ear_from_mesh, neck_proxy
+from lib.rppg_utils import RPPG, forehead_roi, ear_from_mesh, neck_proxy
+import os,sys; sys.path.append(os.path.join(os.path.dirname(__file__),'..'))
 
 DU = mp.solutions.drawing_utils
 DS = mp.solutions.drawing_styles

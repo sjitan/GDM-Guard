@@ -1,5 +1,6 @@
 import argparse, time, json, numpy as np, cv2, mediapipe as mp
-from rppg_utils import RPPG, forehead_roi, ear_from_mesh, perclos_from_ears, neck_proxy
+from lib.rppg_utils import RPPG, forehead_roi, ear_from_mesh, perclos_from_ears, neck_proxy
+import os,sys; sys.path.append(os.path.join(os.path.dirname(__file__),'..'))
 ap=argparse.ArgumentParser()
 ap.add_argument("--video", required=True)
 ap.add_argument("--duration", type=float, default=20)
