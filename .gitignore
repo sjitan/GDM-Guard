@@ -12,4 +12,4 @@ reports/*.pdf
 models/*.pkl
 models/*.h5
 .venv/
-!seeds/gdm_sample.mp4
+!gdm_sample.mp4
