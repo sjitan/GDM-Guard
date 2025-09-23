@@ -1,0 +1,6 @@
+{
+  "subject_id": "D001",
+  "M0": { "age": 31, "bmi": 28.5, "parity": 1, "prior_gdm": 0, "family_dm": 1, "ethnicity_bin": 1 },
+  "M1": { "gwg_slope_kg_per_wk_T1": 0.35, "gwg_slope_kg_per_wk_T2": 0.40, "gwg_slope_kg_per_wk_T3": 0.25, "gwg_dev_from_IOM": 1.2 },
+  "M3": { "PRS_0to10": 4, "PRS_missing": 0 }
+}

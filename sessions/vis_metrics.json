@@ -1,0 +1,13 @@
+{
+  "mode": "demo",
+  "duration_sec": 13.063199043273926,
+  "frames": 407,
+  "metrics": {
+    "rppg_bpm_mean": 55.0,
+    "rppg_snr_mean": 4.658503901459466,
+    "blink_per_min": 41.33750073095909,
+    "ear_mean": 0.2985794656804339,
+    "perclos": 0.14742014742014742,
+    "neck_norm": 1.5014523017734178
+  }
+}

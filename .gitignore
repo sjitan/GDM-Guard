@@ -1,11 +1,8 @@
-__pycache__/
-*.pyc
 .venv/
+.venv311/
+__pycache__/
 .DS_Store
-.ipynb_checkpoints/
-data/raw/
-data/processed/
-models/
-sessions/*.csv
-sessions/*.json
-reports/*.png
+*.pyc
+*.log
+sessions/
+reports/
