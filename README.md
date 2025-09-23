@@ -1,6 +1,6 @@
 # GDMGuard
 AI-enabled early-pregnancy **GDM risk triage** + postpartum follow-through (Boston pilot demo).
-https://youtu.be/P_uuaGIJ_EQ
+[https://youtu.be/P_uuaGIJ_EQ](https://youtu.be/FO4qJDFnGwM)
 
 ## Quick run (local)
 **Demo (CLI, writes features + recommendation)**
